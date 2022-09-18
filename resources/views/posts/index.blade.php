@@ -10,22 +10,42 @@
     <title>Document</title>
 </head>
 <body>
-Index
-<div class="row">
-    @foreach($posts as $post)
-        <div class="card col-4 mx-4 mx-2" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></h5>
-                <p class="card-text">{{$post->content}}</p>
-                <img height="120px" src="{{asset('/storage/images/posts/'.$post->image)}}" alt="">
-                <a href="{{route('posts.edit',$post->id)}}">Edit</a>
-            </div>
-
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{route('posts.index')}}">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-    @endforeach
+    </div>
+</nav>
+<div class="row">
+    <div class="container mt-3 d-flex">
+        @foreach($posts as $post)
+    <div class="card" style="width: 18rem;">
+        <img height="120px" src="{{asset('/storage/images/posts/'.$post->image)}}" alt="">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></h5>
+            <p class="card-text">{{$post->content}}</p>
+            <a href="{{route('posts.edit',$post->id)}}">Edit</a>
+           </div>
+        </div>
+        @endforeach
+
+    </div>
+    <div class="mt-4">
+        <a href="{{ route('posts.create') }}">Create Post</a>
+    </div>
 </div>
-<div>
-    <a href="{{ route('posts.create') }}">Create Post</a>
-</div>
+
 </body>
 </html>
